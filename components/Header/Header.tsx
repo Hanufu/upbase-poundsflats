@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import BackArrow from "./BackArrow";
+import BackArrow from "./BtnBackArrow";
 import BtnCadastroImovel from "./BtnCadastroImovel";
 import Welcome from "./Welcome";
 
