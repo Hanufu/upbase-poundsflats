@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 
 export default function BackArrow() {
     return (
-        <Ionicons name="arrow-back-sharp" size={50} color="#7B2CBF" style={styles.icon} />
+        <Ionicons name="arrow-back-sharp" size={40} color="#7B2CBF" style={styles.icon} />
     );
 }
 

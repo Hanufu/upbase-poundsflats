@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, StyleProp, ViewStyle, TextStyle } from 'react-native';
 
 interface TagButtonProps {
@@ -9,16 +9,7 @@ interface TagButtonProps {
   textStyle?: StyleProp<TextStyle>;
 }
 
-const TagButton = ({ text, selected: propSelected = false, onPress, style, textStyle }: TagButtonProps) => {
-  const [selected, setSelected] = useState(propSelected);
-
-  const handlePress = () => {
-    setSelected(!selected); 
-    if (onPress) {
-      onPress(); 
-    }
-  };
-
+const TagButton = ({ text, selected = false, onPress, style, textStyle }: TagButtonProps) => {
   return (
     <TouchableOpacity
       style={[
@@ -26,7 +17,7 @@ const TagButton = ({ text, selected: propSelected = false, onPress, style, textS
         style,
         selected ? styles.selectedButton : styles.defaultButton
       ]}
-      onPress={handlePress}
+      onPress={onPress}
     >
       <Text style={[
         styles.text,

@@ -1,10 +1,18 @@
-import { View, StyleSheet } from "react-native";
-import BackArrow from "./BackArrowButton";
-import BtnCadastroImovel from "./CadastroImovelButton";
-import Welcome from "./Welcome";
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import BackArrow from '../BackArrowButton/BackArrowButton';
+import BtnCadastroImovel from './CadastroImovelButton';
+import Welcome from './Welcome';
 import TagButton from '@/components/Tags/TagButton';
 
 export default function Header() {
+    const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+    // Função para alternar a seleção
+    const handleTagPress = (tag: string) => {
+        setSelectedTag(tag === selectedTag ? null : tag);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.section1}>
@@ -15,12 +23,23 @@ export default function Header() {
                 <Welcome />
             </View>
             <View style={styles.section3}>
-                <TagButton text='Todos os flats' selected={true} style={styles.tagButton} />
-                <TagButton text='Disponíveis' style={styles.tagButton} />
+                <TagButton
+                    text='Todos os flats'
+                    selected={selectedTag === 'Todos os flats'}
+                    onPress={() => handleTagPress('Todos os flats')}
+                    style={styles.tagButton}
+                />
+                <TagButton
+                    text='Disponíveis'
+                    selected={selectedTag === 'Disponíveis'}
+                    onPress={() => handleTagPress('Disponíveis')}
+                    style={styles.tagButton}
+                />
             </View>
         </View>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {
