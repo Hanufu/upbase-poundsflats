@@ -43,9 +43,6 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        marginTop: 50, 
-        marginHorizontal: 16, 
         gap: 24, 
     },
     section1: {
