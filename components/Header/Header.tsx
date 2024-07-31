@@ -1,7 +1,8 @@
 import { View, StyleSheet } from "react-native";
-import BackArrow from "./BtnBackArrow";
-import BtnCadastroImovel from "./BtnCadastroImovel";
+import BackArrow from "./BackArrowButton";
+import BtnCadastroImovel from "./CadastroImovelButton";
 import Welcome from "./Welcome";
+import TagButton from '@/components/Tags/TagButton';
 
 export default function Header() {
     return (
@@ -14,7 +15,8 @@ export default function Header() {
                 <Welcome />
             </View>
             <View style={styles.section3}>
-                {/* Futuro conteúdo */}
+                <TagButton text='Todos os flats' selected={true} style={styles.tagButton} />
+                <TagButton text='Disponíveis' style={styles.tagButton} />
             </View>
         </View>
     );
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 50, 
         marginHorizontal: 16, 
-        gap: 24,
+        gap: 24, 
     },
     section1: {
         flexDirection: 'row',
@@ -38,5 +40,11 @@ const styles = StyleSheet.create({
     },
     section3: {
         marginTop: 16,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    tagButton: {
+        marginRight: 8,
+        marginBottom: 8, 
     },
 });
