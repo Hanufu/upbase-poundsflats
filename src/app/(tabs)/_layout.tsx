@@ -52,6 +52,10 @@ export default function TabNavigator() {
         tabBarStyle: {
           backgroundColor: '#7B2CBF',
           height: 80,
+          borderTopLeftRadius: 16,
+          borderTopRightRadius: 16,
+          paddingHorizontal: 24,
+          paddingVertical: 16,
         },
         tabBarIcon: ({ focused, color, size }) => {
           let IconComponent;
