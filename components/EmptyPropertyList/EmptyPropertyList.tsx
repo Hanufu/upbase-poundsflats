@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function EmptyPropertyList() {
     return (
         <View style={styles.container}>
             <Image source={require('@/assets/images/Emoticon-Sad.png')} style={styles.image} />
             <Text style={styles.message}>Você não tem nenhum imóvel cadastrado. Que tal cadastrar agora?</Text>
-            <TouchableHighlight style={styles.button}>
+            <TouchableOpacity style={styles.button}>
                 <Text style={styles.text}>Cadastrar meu primeiro imóvel</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
         </View>
     );
 }
