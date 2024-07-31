@@ -1,12 +1,17 @@
-import { Text, View } from "react-native";
+import React from 'react';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import Header from '@/components/Header/Header';
 
-
-export default function Home(){
-    return(
-        <View style={{flex: 1, justifyContent:"center", alignItems: "center"}} >
-            <Text style={{ fontSize:44, fontWeight:700}}>
-                Home
-            </Text>
-        </View>
-    )
+export default function Home() {
+    return (
+        <SafeAreaView style={styles.container}>
+            <Header />
+        </SafeAreaView>
+    );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});
