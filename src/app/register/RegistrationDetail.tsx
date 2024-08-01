@@ -1,19 +1,16 @@
 import React from 'react'
 import MainContainer from '@/src/components/MainContainer/MainContainer'
 import Header from '@/src/components/Header/Header'
-import PropertyRegistrationForm from '@/src/components/Form/PropertyRegistrationForm'
 
-export default function Register() {
-
+export default function RegistrationDetail() {
   return (
     <MainContainer>
-      <Header message="Para começarmos, precisamos de alguns dados" messageStyle={{
+      <Header message="Agora é hora de dar mais detalhes" messageStyle={{
         fontSize: 24,
         fontFamily: 'Jura_400Regular',
         lineHeight: 28,
         color: "#10002B",
         }}/>
-        <PropertyRegistrationForm />
     </MainContainer>
   )
 }
