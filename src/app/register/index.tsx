@@ -1,6 +1,6 @@
 import React from 'react'
-import MainContainer from '@/components/MainContainer/MainContainer'
-import Header from '@/components/Header/Header'
+import MainContainer from '@/src/components/MainContainer/MainContainer'
+import Header from '@/src/components/Header/Header'
 
 export default function Register() {
   return (

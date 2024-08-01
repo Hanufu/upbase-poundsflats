@@ -8,7 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import SpinnerLoading from '@/components/SpinnerLoading/SpinnerLoading'
+import SpinnerLoading from '@/src/components/SpinnerLoading/SpinnerLoading'
 import { 
     Jura_300Light,
     Jura_400Regular,
@@ -41,7 +41,8 @@ export default function _layout() {
     }, [fontsLoaded]);
 
     if (!fontsLoaded) {
-        return <SpinnerLoading />; 
+        return null;
+        //return <SpinnerLoading />; Está dando erro na versão Web
     }
 
     return (

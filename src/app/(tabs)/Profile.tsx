@@ -1,4 +1,4 @@
-import MainContainer from '@/components/MainContainer/MainContainer';
+import MainContainer from '@/src/components/MainContainer/MainContainer';
 import React from 'react';
 import { Text } from 'react-native';
 

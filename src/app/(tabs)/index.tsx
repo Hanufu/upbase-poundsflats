@@ -1,7 +1,7 @@
 import React from 'react'
-import MainContainer from '@/components/MainContainer/MainContainer'
-import EmptyPropertyList from '@/components/EmptyPropertyList/EmptyPropertyList'
-import Header from '@/components/Header/Header'
+import MainContainer from '@/src/components/MainContainer/MainContainer'
+import EmptyPropertyList from '@/src/components/EmptyPropertyList/EmptyPropertyList'
+import Header from '@/src/components/Header/Header'
 
 export default function Home() {
   return (

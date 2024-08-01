@@ -3,7 +3,7 @@ import { View, StyleSheet, StyleProp, TextStyle, Platform } from 'react-native';
 
 import BackArrow from '../BackArrowButton/BackArrowButton';
 import BtnCadastroImovel from './CadastroImovelButton';
-import TagButton from '@/components/Tags/TagButton';
+import TagButton from '@/src/components/Tags/TagButton';
 import Message from './Message';
 
 import { usePathname } from 'expo-router';
