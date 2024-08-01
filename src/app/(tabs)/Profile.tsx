@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 export default function Profile() {
   return (
     <MainContainer>
-      <Text>Calendar</Text>
+      <Text>Profile</Text>
     </MainContainer>
   );
 }

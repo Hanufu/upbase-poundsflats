@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 export default function Table() {
   return (
     <MainContainer>
-      <Text>Calendar</Text>
+      <Text>Table</Text>
     </MainContainer>
   );
 }

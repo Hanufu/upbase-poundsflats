@@ -12,5 +12,6 @@ const styles = StyleSheet.create({
         gap: 24,
         backgroundColor:'#FFFFFF',
         paddingTop: 50,
+        alignItems: "center",
     },
 });
