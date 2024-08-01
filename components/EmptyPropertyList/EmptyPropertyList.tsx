@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap:16,
         maxWidth: 345,
+        marginTop: -100,
     },
     image: {
         width: 48,

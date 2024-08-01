@@ -1,18 +1,11 @@
+import MainContainer from '@/components/MainContainer/MainContainer';
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 
 export default function Table() {
   return (
-    <View style={styles.container}>
-      <Text>Table</Text>
-    </View>
+    <MainContainer>
+      <Text>Calendar</Text>
+    </MainContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
