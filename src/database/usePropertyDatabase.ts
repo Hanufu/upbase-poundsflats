@@ -13,11 +13,10 @@ export type PropertyDatabase = {
     preco?: number;
     imagem?: string;
     disponivel?: boolean;
-  };
-  
+};
 
-export function usePropertyDatabase(){
-    const database = useSQLiteContext()
+export function usePropertyDatabase() {
+    const database = useSQLiteContext();
 
     async function create(data: Omit<PropertyDatabase, "id" | "preco" | "imagem" | "disponivel">) {
         const statement = await database.prepareAsync(
@@ -38,12 +37,38 @@ export function usePropertyDatabase(){
 
             const insertedRowId = result.lastInsertRowId.toLocaleString();
 
-            return { insertedRowId }
+            return { insertedRowId };
         } catch (error) {
             throw error;
-            
+        } finally {
+            await statement.finalizeAsync();
         }
     }
 
-    return { create }
+    async function listAll() {
+        try {
+            const query = "SELECT * FROM property"
+           
+            const response = await database.getAllAsync<PropertyDatabase>(query)
+
+            return response.map((row: any) => ({
+                id: row.id,
+                nome_imovel: row.nome_imovel,
+                descricao: row.descricao,
+                cep: row.cep,
+                endereco: row.endereco,
+                numero: row.numero,
+                complemento: row.complemento,
+                cidade: row.cidade,
+                uf: row.uf,
+                preco: row.preco,
+                imagem: row.imagem,
+                disponivel: row.disponivel
+            }));
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    return { create, listAll };
 }
