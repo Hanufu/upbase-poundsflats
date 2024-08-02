@@ -2,7 +2,7 @@ import { type SQLiteDatabase } from 'expo-sqlite'
 
 export async function initializeDatabase(database: SQLiteDatabase) {
     await database.execAsync(`
-      CREATE TABLE IF NOT EXISTS properties (
+      CREATE TABLE IF NOT EXISTS property (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome_imovel TEXT NOT NULL,
         descricao TEXT,
