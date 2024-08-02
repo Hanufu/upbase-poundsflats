@@ -1,15 +1,21 @@
+import { Link, useRouter } from 'expo-router';
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function EmptyPropertyList() {
+    const router = useRouter();
     return (
+        
         <View style={styles.container}>
             <Image source={require('@/assets/images/Emoticon-Sad.png')} style={styles.image} />
             <Text style={styles.message}>Você não tem nenhum imóvel cadastrado. Que tal cadastrar agora?</Text>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.text}>Cadastrar meu primeiro imóvel</Text>
-            </TouchableOpacity>
+            <Link href="/register" asChild>
+                <TouchableOpacity style={styles.button}  onPress={ () => router.push('/register')}>
+                    <Text style={styles.text}>Cadastrar meu primeiro imóvel</Text>
+                </TouchableOpacity>
+            </Link>
         </View>
+        
     );
 }
 

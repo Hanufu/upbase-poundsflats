@@ -12,5 +12,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     paddingTop: 50,
     alignItems: 'center',
+    rowGap: 24,
   },
 });
