@@ -2,21 +2,26 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
+type PropertyItemProps = {
+  nome_imovel: string;
+  localizacao: string;
+  preco: number;
+};
 
-export default function PropertyItem() {
+export default function PropertyItem({ nome_imovel, localizacao, preco }: PropertyItemProps) {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require('@/assets/images/PropertyImage.png')} />
       <View style={styles.section1}>
-        <Text style={[styles.text, styles.nome]}>Poundsflats Aquário</Text>
+        <Text style={[styles.text, styles.nome]}>{nome_imovel}</Text>
         <View style={styles.nota}>
           <Text style={[styles.text, styles.nota]}>4.5</Text>
           <AntDesign name="star" size={16} color="#7B2CBF" />
         </View>
       </View>
       <View style={styles.section2}>
-        <Text style={[styles.text, styles.local]}>Localização</Text>
-        <Text style={[styles.text, styles.valor]}>Diária: R$97</Text>
+        <Text style={[styles.text, styles.local]}>{localizacao}</Text>
+        <Text style={[styles.text, styles.valor]}>Diária: R${preco.toFixed(2)}</Text>
       </View>
     </View>
   );
@@ -25,6 +30,7 @@ export default function PropertyItem() {
 const styles = StyleSheet.create({
   container: {
     gap: 16,
+    marginBottom: 24,
   },
   image: {
     width: 345,
@@ -66,7 +72,7 @@ const styles = StyleSheet.create({
   },
   valor: {
     fontFamily: 'Jura_500Medium',
-    fontSize:12,
+    fontSize: 12,
     lineHeight: 16,
   },
 });

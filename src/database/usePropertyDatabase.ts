@@ -61,9 +61,9 @@ export function usePropertyDatabase() {
                 complemento: row.complemento,
                 cidade: row.cidade,
                 uf: row.uf,
-                preco: row.preco,
+                preco: row.preco ?? 98,
                 imagem: row.imagem,
-                disponivel: row.disponivel
+                disponivel: row.disponivel,
             }));
         } catch (error) {
             throw error;
