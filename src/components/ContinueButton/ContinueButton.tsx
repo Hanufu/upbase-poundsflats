@@ -14,7 +14,7 @@ export default function ContinueButton({ href, onPress, disabled }: ContinueButt
   const handlePress = (event: GestureResponderEvent) => {
     if (onPress) onPress(event);
     if (!disabled) {
-      router.push(href); // Navega para a página especificada
+      router.push(href); 
     }
   };
 
@@ -22,7 +22,7 @@ export default function ContinueButton({ href, onPress, disabled }: ContinueButt
     <TouchableOpacity 
       style={[styles.button, disabled ? styles.buttonDisabled : {}]} 
       onPress={handlePress}
-      activeOpacity={disabled ? 1 : 0.7} // Mantenha a opacidade do botão
+      activeOpacity={disabled ? 1 : 0.7} 
       disabled={disabled}
     >
       <Text style={styles.text}>Continuar</Text>
@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 4,
     justifyContent: 'center',
-    alignItems: 'center', // Centraliza o texto no botão
+    alignItems: 'center', 
     marginTop: 8,
   },
   buttonDisabled: {
-    backgroundColor: '#A88BC0', // Tom mais claro e visível do roxo
+    backgroundColor: '#A88BC0', 
   },
   text: {
     fontFamily: 'Jura_400Regular',
