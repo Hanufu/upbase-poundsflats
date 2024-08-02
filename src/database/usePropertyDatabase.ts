@@ -20,20 +20,20 @@ export function usePropertyDatabase() {
 
     async function create(data: Omit<PropertyDatabase, "id" | "preco" | "imagem" | "disponivel">) {
         const statement = await database.prepareAsync(
-            "INSERT INTO property (nome_imovel, descricao, cep, endereco, numero, complemento, cidade, uf) VALUES ($nome_imovel, $descricao, $cep, $endereco, $numero, $complemento, $cidade, $uf)"
+            "INSERT INTO property (nome_imovel, descricao, cep, endereco, numero, complemento, cidade, uf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         );
 
         try {
-            const result = await statement.executeAsync({
-                $nome_imovel: data.nome_imovel,
-                $descricao: data.descricao,
-                $cep: data.cep,
-                $endereco: data.endereco,
-                $numero: data.numero,
-                $complemento: data.complemento,
-                $cidade: data.cidade,
-                $uf: data.uf
-            });
+            const result = await statement.executeAsync([
+                data.nome_imovel,
+                data.descricao,
+                data.cep,
+                data.endereco,
+                data.numero,
+                data.complemento,
+                data.cidade,
+                data.uf
+            ]);
 
             const insertedRowId = result.lastInsertRowId.toLocaleString();
 
@@ -47,9 +47,8 @@ export function usePropertyDatabase() {
 
     async function listAll() {
         try {
-            const query = "SELECT * FROM property"
-           
-            const response = await database.getAllAsync<PropertyDatabase>(query)
+            const query = "SELECT * FROM property";
+            const response = await database.getAllAsync<PropertyDatabase>(query);
 
             return response.map((row: any) => ({
                 id: row.id,
@@ -70,5 +69,49 @@ export function usePropertyDatabase() {
         }
     }
 
-    return { create, listAll };
+    async function update(id: number, data: Partial<Omit<PropertyDatabase, "id">>) {
+        const statement = await database.prepareAsync(
+            "UPDATE property SET nome_imovel = ?, descricao = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, cidade = ?, uf = ?, preco = ?, imagem = ?, disponivel = ? WHERE id = ?"
+        );
+
+        try {
+            // Preencher valores `undefined` com valores padrão, como `null`
+            const values = [
+                data.nome_imovel ?? null,
+                data.descricao ?? null,
+                data.cep ?? null,
+                data.endereco ?? null,
+                data.numero ?? null,
+                data.complemento ?? null,
+                data.cidade ?? null,
+                data.uf ?? null,
+                data.preco ?? null,
+                data.imagem ?? null,
+                data.disponivel ?? null,
+                id
+            ];
+
+            await statement.executeAsync(values);
+        } catch (error) {
+            throw error;
+        } finally {
+            await statement.finalizeAsync();
+        }
+    }
+
+    async function deleteProperty(id: number) {
+        const statement = await database.prepareAsync(
+            "DELETE FROM property WHERE id = ?"
+        );
+
+        try {
+            await statement.executeAsync([id]);
+        } catch (error) {
+            throw error;
+        } finally {
+            await statement.finalizeAsync();
+        }
+    }
+
+    return { create, listAll, update, deleteProperty };
 }

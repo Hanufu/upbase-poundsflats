@@ -160,7 +160,7 @@ export default function PropertyRegistrationForm() {
       <ContinueButton 
         onPress={create}
         disabled={!isFormValid}
-        href={'/register/RegistrationDetail'} 
+        href={'(tabs)/Table'} 
       />
       <Modal
         transparent={true}
@@ -191,17 +191,21 @@ export default function PropertyRegistrationForm() {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 24,
+    gap:24,
+    paddingTop: 16,
+    flex: 1,
   },
   text: {
     fontFamily: 'Jura_400Regular',
     fontSize: 12,
     lineHeight: 16,
     color: '#10002B',
+    marginBottom: 8,
   },
   descricaoInput: {
     height: 104,
     textAlignVertical: 'top',
+    marginBottom: 4,
   },
   inputInfo: {
     fontFamily: 'Jura_400Regular',
