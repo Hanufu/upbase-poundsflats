@@ -9,8 +9,10 @@ export default function PropertyItem() {
       <Image style={styles.image} source={require('@/assets/images/PropertyImage.png')} />
       <View style={styles.section1}>
         <Text style={[styles.text, styles.nome]}>Poundsflats Aquário</Text>
-        <AntDesign name="star" size={16} color="#7B2CBF" />
-        <Text style={[styles.text, styles.nota]}>4.5</Text>
+        <View style={styles.nota}>
+          <Text style={[styles.text, styles.nota]}>4.5</Text>
+          <AntDesign name="star" size={16} color="#7B2CBF" />
+        </View>
       </View>
       <View style={styles.section2}>
         <Text style={[styles.text, styles.local]}>Localização</Text>
@@ -40,6 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 16,
+    marginTop: -16
   },
   text: {
     fontFamily: 'Jura_400Regular',
@@ -48,15 +51,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   nome: {
-    fontFamily: 'Jura_500Medium',
+    fontFamily: 'Jura_700Bold',
     letterSpacing: -0.17,
   },
-  nota: {},
+  nota: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 4,
+  },
   local: {
     fontSize: 12,
     lineHeight: 16,
   },
   valor: {
     fontFamily: 'Jura_500Medium',
+    fontSize:12,
+    lineHeight: 16,
   },
 });
