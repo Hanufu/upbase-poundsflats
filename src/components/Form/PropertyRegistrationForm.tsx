@@ -1,8 +1,10 @@
-import { View, Text, StyleSheet, Alert, Button, TextInput } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Alert, TextInput, TouchableOpacity, Modal, FlatList, Dimensions } from 'react-native';
+import React, { useState } from 'react';
 import { Input } from '../Input/Input';
 import ContinueButton from '../ContinueButton/ContinueButton';
 import { usePropertyDatabase } from '@/src/database/usePropertyDatabase';
+
+const windowWidth = Dimensions.get('window').width;
 
 export default function PropertyRegistrationForm() {
   const [nome_imovel, setNome] = useState('');
@@ -13,8 +15,41 @@ export default function PropertyRegistrationForm() {
   const [complemento, setComplemento] = useState('');
   const [cidade, setCidade] = useState('');
   const [uf, setUf] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
 
   const propertyDatabase = usePropertyDatabase();
+
+  // Lista de estados com siglas
+  const estados = [
+    { label: 'Selecione um estado', value: '' },
+    { label: 'AC', value: 'AC' },
+    { label: 'AL', value: 'AL' },
+    { label: 'AP', value: 'AP' },
+    { label: 'AM', value: 'AM' },
+    { label: 'BA', value: 'BA' },
+    { label: 'CE', value: 'CE' },
+    { label: 'DF', value: 'DF' },
+    { label: 'ES', value: 'ES' },
+    { label: 'GO', value: 'GO' },
+    { label: 'MA', value: 'MA' },
+    { label: 'MT', value: 'MT' },
+    { label: 'MS', value: 'MS' },
+    { label: 'MG', value: 'MG' },
+    { label: 'PA', value: 'PA' },
+    { label: 'PB', value: 'PB' },
+    { label: 'PR', value: 'PR' },
+    { label: 'PE', value: 'PE' },
+    { label: 'PI', value: 'PI' },
+    { label: 'RJ', value: 'RJ' },
+    { label: 'RN', value: 'RN' },
+    { label: 'RS', value: 'RS' },
+    { label: 'RO', value: 'RO' },
+    { label: 'RR', value: 'RR' },
+    { label: 'SC', value: 'SC' },
+    { label: 'SP', value: 'SP' },
+    { label: 'SE', value: 'SE' },
+    { label: 'TO', value: 'TO' },
+  ];
 
   const isFormValid = nome_imovel && descricao && cep && endereco && numero && cidade && uf;
 
@@ -54,6 +89,11 @@ export default function PropertyRegistrationForm() {
       console.error('Erro ao criar a propriedade:', error);
     }
   }
+
+  const handleSelectState = (state: string) => {
+    setUf(state);
+    setModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -109,18 +149,42 @@ export default function PropertyRegistrationForm() {
           value={cidade}
           onChangeText={setCidade}
         />
-        <Input
-          style={styles.uf}
-          placeholder='UF'
-          value={uf}
-          onChangeText={setUf}
-        />
+        <TouchableOpacity
+          style={styles.ufContainer}
+          onPress={() => setModalVisible(true)}
+        >
+          <Text style={styles.ufText}>{uf || 'UF'}</Text>
+          <Text style={styles.arrowDown}>▼</Text>
+        </TouchableOpacity>
       </View>
       <ContinueButton 
         onPress={create}
         disabled={!isFormValid}
         href={'/register/RegistrationDetail'} 
       />
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        animationType="fade"
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <FlatList
+              data={estados}
+              keyExtractor={(item) => item.value}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.modalItem}
+                  onPress={() => handleSelectState(item.value)}
+                >
+                  <Text style={styles.modalItemText}>{item.label}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -166,7 +230,49 @@ const styles = StyleSheet.create({
   cidade: {
     flex: 3,
   },
-  uf: {
+  ufContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#ccc',
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 4,
+    flexDirection: 'row',
+  },
+  ufText: {
+    fontFamily: 'Jura_400Regular',
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#10002B',
+  },
+  arrowDown: {
+    fontSize: 16,
+    color: '#00000029',
+    marginLeft: 8,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: windowWidth - 40,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 5,
+  },
+  modalItem: {
+    padding: 15,
+  },
+  modalItemText: {
+    fontFamily: 'Jura_400Regular',
+    fontSize: 16,
+    color: '#10002B',
   },
 });
