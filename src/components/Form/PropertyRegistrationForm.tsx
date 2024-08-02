@@ -76,7 +76,6 @@ export default function PropertyRegistrationForm() {
         uf,
       });
       
-      Alert.alert("Produto Cadastrado com ID: ", response.insertedRowId.toString());
       setNome('');
       setDescricao('');
       setCep('');
