@@ -37,7 +37,7 @@ Após a instalação das dependências, você pode iniciar o projeto em diferent
   ```bash
   npm start
 
-- **Para iniciar o projeto linpando o cache:**
+- **Para iniciar o projeto linpando o cache caso a opção anterior não funcione:**
 
   ```bash
   npx expo start -c
